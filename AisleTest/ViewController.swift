@@ -11,6 +11,7 @@ import Foundation
 
 class ViewController: UIViewController{
     
+    //textfields automatically filled in with correct string for now
     @IBOutlet weak var txtUserName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
@@ -20,7 +21,7 @@ class ViewController: UIViewController{
     }
     //data received?
 
-    //allow self signing
+    //allow self signing for authentication
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust{
@@ -56,7 +57,7 @@ class ViewController: UIViewController{
                 print(error)
                 return
             }
-            let contents: NSDictionary
+            let contents: NSDictionary //!!!is server data dictionary?!!!
             do {
                 contents = try NSJSONSerialization.JSONObjectWithData(responseData,
                     options: []) as! NSDictionary
@@ -64,7 +65,7 @@ class ViewController: UIViewController{
                 print("JSON to data error") // not able to convert data from JSON
                 return
             }
-            print (contents.description)
+            print (contents.description) //print JSON data if it's retrieved
             
         })
         task.resume()

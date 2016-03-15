@@ -3,16 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>apistage2.aisleconnect.us</key>
-            <dict>
-                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-            </dict>
-        </dict>
-    </dict>
+	<dict>
+	    <key>NSExceptionDomains</key>
+	    <dict>
+	        <key>apistage2.aisleconnect.us</key>
+	        <dict>
+	            <key>NSIncludesSubdomains</key>
+	            <true/>
+	            <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+	            <true/>
+	            <key>NSTemporaryExceptionMinimumTLSVersion</key>
+	            <string>1.0</string>
+	            <key>NSTemporaryExceptionRequiresForwardSecrecy</key>
+	            <false/>
+	        </dict>
+	    </dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

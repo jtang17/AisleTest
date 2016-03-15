@@ -8,10 +8,30 @@
 
 import UIKit
 
-class ListsViewController: UIViewController {
+class ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    var contentsDict:NSDictionary?
+    
+    var tableData = [String]()
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableData.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        //cell.name.text = tableName[indexPath.row]
+        //cell.number.text = tableNumber[indexPath.row]
+  
+        return cell
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(contentsDict)
+
+    
 
         // Do any additional setup after loading the view.
     }

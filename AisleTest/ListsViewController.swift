@@ -15,10 +15,9 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var contentsDict:NSDictionary?
     var namesArray = [String]()
     var productsArray = [NSArray]()
-    var productsSend = [[String: AnyObject]]()
-    var tableData = [String]()
     var chosenCellIndex: Int?
     
+    //data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return namesArray.count
     }
@@ -33,21 +32,22 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    //delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         chosenCellIndex = indexPath.row
-        print(chosenCellIndex)
-        
+        //print(chosenCellIndex)
+  
         // Start segue with index of cell clicked
-        performSegueWithIdentifier("2to3", sender: productsArray[chosenCellIndex!])
+        performSegueWithIdentifier("2to3", sender: self)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\"The List\""
+        title = "LISTS"
         let data = contentsDict!["data"] as! [[String : AnyObject]]
-        
+
         for names in data {
             
             let name = names["name"]! as! String
@@ -57,10 +57,8 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         for products in data {
             
             let productList = products["products"] as! NSArray
-            let productsDict = products["products"] as! [[String : AnyObject]]
-            
             self.productsArray.append(productList)
-            self.productsSend = productsDict
+
 
         }
 
@@ -68,7 +66,7 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //print(productsArray[2].count)
         // Do any additional setup after loading the view.
         
-        tableView = UITableView(frame: CGRectMake(0,44,view.frame.size.width,view.frame.size.height), style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0,0,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         
         if let theTableView = tableView {
@@ -89,7 +87,9 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         if id == "2to3" {
             
             let productsViewController:ProductsViewController = segue.destinationViewController as! ProductsViewController
-            productsViewController.products = sender as? [[String: AnyObject]]
+            productsViewController.products = productsArray[chosenCellIndex!] as? [[String: AnyObject]]
+            productsViewController.listTitle = namesArray[chosenCellIndex!] as String
+
         }
     }
     

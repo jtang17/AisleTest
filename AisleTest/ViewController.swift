@@ -89,7 +89,8 @@ class ViewController: UIViewController, NSURLSessionDelegate {
         
         let id = segue.identifier
         if id == "Login" {
-            let listsViewController:ListsViewController = segue.destinationViewController as! ListsViewController
+            let nav = segue.destinationViewController as! UINavigationController
+            let listsViewController:ListsViewController = nav.topViewController as! ListsViewController
             listsViewController.contentsDict = sender as? NSDictionary
         }
     }

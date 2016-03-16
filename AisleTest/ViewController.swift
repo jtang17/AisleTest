@@ -88,7 +88,7 @@ class ViewController: UIViewController, NSURLSessionDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let id = segue.identifier
-        if(id == "Login"){
+        if id == "Login" {
             let listsViewController:ListsViewController = segue.destinationViewController as! ListsViewController
             listsViewController.contentsDict = sender as? NSDictionary
         }

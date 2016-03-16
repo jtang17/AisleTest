@@ -1,19 +1,24 @@
 //
-//  HacksViewController.swift
+//  ProductsViewController.swift
 //  AisleTest
 //
-//  Created by jonathan tang on 3/15/16.
+//  Created by jonathan tang on 3/17/16.
 //  Copyright © 2016 Jonathan Tang. All rights reserved.
 //
 
 import UIKit
+import Foundation
 
-class HacksViewController: UIViewController {
-
-    @IBOutlet weak var navigationBar: UINavigationItem!
+class ProductsViewController: UIViewController {
+    @IBOutlet var list: UILabel!
+    
+    var products: [[String: AnyObject]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(products)
+        
 
         // Do any additional setup after loading the view.
     }

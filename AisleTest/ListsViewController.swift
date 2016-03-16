@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import Foundation
 
-class ListsViewController: UIViewController, UITableViewDataSource {
+class ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tableView: UITableView?
     var contentsDict:NSDictionary?
     var namesArray = [String]()
     var productsArray = [NSArray]()
-    
+    var productsSend = [[String: AnyObject]]()
     var tableData = [String]()
+    var chosenCellIndex: Int?
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return namesArray.count
@@ -31,28 +33,45 @@ class ListsViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        chosenCellIndex = indexPath.row
+        print(chosenCellIndex)
+        
+        // Start segue with index of cell clicked
+        performSegueWithIdentifier("2to3", sender: productsArray[chosenCellIndex!])
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"The List\""
         let data = contentsDict!["data"] as! [[String : AnyObject]]
+        
         for names in data {
+            
             let name = names["name"]! as! String
             //print("names: \(name)")
             self.namesArray.append(name)
         }
         for products in data {
+            
             let productList = products["products"] as! NSArray
+            let productsDict = products["products"] as! [[String : AnyObject]]
+            
             self.productsArray.append(productList)
+            self.productsSend = productsDict
+
         }
-        
-        print(namesArray.count)
-        print(productsArray[2].count) //test: [0]:8 [1]:8 [2]:20
+
+        //print(productsArray[0])
+        //print(productsArray[2].count)
         // Do any additional setup after loading the view.
         
         tableView = UITableView(frame: CGRectMake(0,44,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         
-        if let theTableView = tableView{
+        if let theTableView = tableView {
             
             theTableView.registerClass(UITableViewCell.classForCoder(),
                 forCellReuseIdentifier: "identifier")
@@ -60,6 +79,17 @@ class ListsViewController: UIViewController, UITableViewDataSource {
             theTableView.dataSource = self
             theTableView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             view.addSubview(theTableView)
+        }
+        tableView!.delegate = self
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let id = segue.identifier
+        if id == "2to3" {
+            
+            let productsViewController:ProductsViewController = segue.destinationViewController as! ProductsViewController
+            productsViewController.products = sender as? [[String: AnyObject]]
         }
     }
     
@@ -69,14 +99,5 @@ class ListsViewController: UIViewController, UITableViewDataSource {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

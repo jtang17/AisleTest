@@ -25,6 +25,8 @@ class ListsViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("identifier", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel!.text = "\(namesArray[indexPath.row]) : \(productsArray[indexPath.row].count) items"
+        cell.layer.borderWidth = 0.7
+        cell.layer.borderColor = UIColor.blackColor().CGColor
         
         return cell
     }
@@ -47,7 +49,8 @@ class ListsViewController: UIViewController, UITableViewDataSource {
         print(productsArray[2].count) //test: [0]:8 [1]:8 [2]:20
         // Do any additional setup after loading the view.
         
-        tableView = UITableView(frame: view.bounds, style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0,44,view.frame.size.width,view.frame.size.height), style: .Plain)
+        
         
         if let theTableView = tableView{
             
@@ -56,11 +59,10 @@ class ListsViewController: UIViewController, UITableViewDataSource {
             
             theTableView.dataSource = self
             theTableView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            
             view.addSubview(theTableView)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

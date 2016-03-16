@@ -47,7 +47,7 @@ class ViewController: UIViewController, NSURLSessionDelegate {
         let PasswordData = PasswordString.dataUsingEncoding(NSUTF8StringEncoding)
         let base64EncodedCredential = PasswordData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
-        let urlPath: String = "https://apistage2.aisleconnect.us/ac.api/rest/v2.0/checklist"
+        let urlPath: String = "https://apistage2.aisleconnect.us/ac.api/rest/v2.0/checklist/"
         let url: NSURL = NSURL(string: urlPath)!
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -68,17 +68,19 @@ class ViewController: UIViewController, NSURLSessionDelegate {
                 print(error)
                 return
             }
-            let contents: NSDictionary
+            
             do {
-                contents = try NSJSONSerialization.JSONObjectWithData(responseData,
-                    options: []) as! NSDictionary
+                var json = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+                //print(json)
 
-            } catch  {
+            
+                self.performSegueWithIdentifier("Login", sender: json)
+            } catch {
                 print("JSON to data error") // not able to convert data from JSON
                 return
             }
-            //print(contents)
-            self.performSegueWithIdentifier("Login", sender: contents)
+            
+            
         })
         task.resume()
     }

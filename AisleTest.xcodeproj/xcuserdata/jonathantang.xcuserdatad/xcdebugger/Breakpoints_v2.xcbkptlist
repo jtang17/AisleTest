@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AisleTest/DetailsViewController.swift"
-            timestampString = "479902763.642879"
+            timestampString = "479926308.839997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "jsonData()"
             landmarkType = "5">
          </BreakpointContent>

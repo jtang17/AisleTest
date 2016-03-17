@@ -15,6 +15,7 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     var bookTitle: String?
     var imageViewObject = UIImageView()
     var productDict: NSDictionary?
+    var textLabel = UILabel()
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void) {
         
@@ -54,15 +55,10 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
             }
             
             do {
-                var json = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                print(json)
-                /*if let productDict = json {
-                
-                completionHandler(productDict, nil)
-                return
-                }*/
-                
-                
+                let json = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                //print(json)
+                //self.update_text(json)
+
                 
             } catch {
                 print("JSON to data error") // not able to convert data from JSON
@@ -77,15 +73,28 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
         
     }
     
-    
+    func update_text(json:NSDictionary) {
+        dispatch_async(dispatch_get_main_queue(), {
+            //self.textLabel.text = "Description from JSON"
+            return
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = bookTitle
         
         jsonData()
+        print(productDict)
         
-        imageViewObject = UIImageView(frame:CGRectMake(0, 75, 200, 200))
+        textLabel = UILabel(frame: CGRectMake(0 , 285, 250, 250))
+        textLabel.numberOfLines = 0
+        textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        textLabel.font = UIFont(name: "Arial", size: 14)
+        textLabel.text = "hi there can you see this text \n hello hello \n description \n json"
+        self.view.addSubview(textLabel)
+        
+        imageViewObject = UIImageView(frame:CGRectMake(0, 75, 200, 250))
         if imageUrl != "none" {
             
             if let url = NSURL(string:imageUrl!) {
@@ -101,6 +110,7 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     }
     
     override func viewWillLayoutSubviews() {
+        textLabel.center.x = view.center.x
         imageViewObject.center.x = view.center.x
     }
     

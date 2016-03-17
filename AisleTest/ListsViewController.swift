@@ -32,7 +32,7 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    //delegate
+    //delegate method
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         chosenCellIndex = indexPath.row

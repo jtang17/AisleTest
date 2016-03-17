@@ -18,9 +18,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     var authorsArray = [NSArray]()
     var imageUrlArray = [String]()
     var chosenCellIndex: Int?
+    var imageSend = UIImage()
     
     //data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return booksArray.count
     }
     
@@ -45,13 +47,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    //delegate
+    //delegate method
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         chosenCellIndex = indexPath.row
-        //print(chosenCellIndex)
-        
-        // Start segue with index of cell clicked
+
         performSegueWithIdentifier("3to4", sender: self)
         
     }
@@ -95,6 +95,18 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
 
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let id = segue.identifier
+        if id == "3to4" {
+            
+            let detailsViewController:DetailsViewController = segue.destinationViewController as! DetailsViewController
+            detailsViewController.imageUrl = imageUrlArray[chosenCellIndex!] as String
+            detailsViewController.bookTitle = booksArray[chosenCellIndex!] as String
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class DetailsViewController: UIViewController, NSURLSessionDelegate {
-
+    
     var imageUrl: String?
     var bookTitle: String?
     var imageViewObject = UIImageView()
@@ -33,7 +33,7 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
         
         let urlPath: String = "https://apistage2.aisleconnect.us/ac.api/rest/v2.0/product/"
         let url: NSURL = NSURL(string: urlPath)!
-
+        
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
         
@@ -57,13 +57,13 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
                 var json = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 print(json)
                 /*if let productDict = json {
-                    
-                    completionHandler(productDict, nil)
-                    return
+                
+                completionHandler(productDict, nil)
+                return
                 }*/
                 
                 
-         
+                
             } catch {
                 print("JSON to data error") // not able to convert data from JSON
                 return
@@ -71,20 +71,19 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
             
             
         })
-
+        
         task.resume()
-
-
+        
+        
     }
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = bookTitle
-        print(productDict)
-  
-        imageViewObject = UIImageView(frame:CGRectMake(0, 50, 200, 200))
+        
+        imageViewObject = UIImageView(frame:CGRectMake(0, 75, 200, 200))
         if imageUrl != "none" {
             
             if let url = NSURL(string:imageUrl!) {
@@ -95,28 +94,27 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
         }
         self.view.addSubview(imageViewObject)
         self.view.sendSubviewToBack(imageViewObject)
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillLayoutSubviews() {
         imageViewObject.center.x = view.center.x
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

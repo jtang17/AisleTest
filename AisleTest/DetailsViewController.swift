@@ -83,6 +83,8 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
         super.viewDidLoad()
         title = bookTitle
         
+        jsonData()
+        
         imageViewObject = UIImageView(frame:CGRectMake(0, 75, 200, 200))
         if imageUrl != "none" {
             

@@ -15,10 +15,9 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     var products: [[String: AnyObject]]?
     var listTitle: String?
     var booksArray = [String]()
-    var authorsArray = [NSArray]()
+    var authorsArray = Array<AnyObject>()
     var imageUrlArray = [String]()
     var chosenCellIndex: Int?
-    var imageSend = UIImage()
     
     //data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,9 +36,15 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
         }
+        //join authors of books with multiple authors
+        var multiAuthorsArray = authorsArray[indexPath.row] as! Array<String>
+        var multiAuthorsString = multiAuthorsArray.joinWithSeparator(", ")
         
+
+        cell.textLabel!.numberOfLines = 0
+        cell.textLabel!.lineBreakMode = NSLineBreakMode.ByTruncatingMiddle
         cell.textLabel!.font = UIFont(name:"Arial", size:12)
-        cell.textLabel!.text = "\"\(booksArray[indexPath.row])\", by \(authorsArray[indexPath.row][0])"
+        cell.textLabel!.text = "\"\(booksArray[indexPath.row])\", by\n \(multiAuthorsString)"
         cell.layer.borderWidth = 0.7
         cell.layer.borderColor = UIColor.blackColor().CGColor
         
@@ -67,7 +72,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             booksArray.append(bookTitle)
         }
         for authors in products! {
-            let author = authors["authors"] as! NSArray
+            let author = authors["authors"] as! Array<AnyObject>
             authorsArray.append(author)
         }
         for imageUrls in products! {

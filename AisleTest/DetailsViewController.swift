@@ -26,7 +26,7 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     
     func jsonData() {
         
-        let PasswordString = "paul.lin@linagenetworks.com:welcome1"
+        let PasswordString = "paul.lin@lineagenetworks.com:welcome1"
         print(PasswordString)
         let PasswordData = PasswordString.dataUsingEncoding(NSUTF8StringEncoding)
         let base64EncodedCredential = PasswordData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
@@ -78,15 +78,9 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     }
     
 
-    func findDescription(dict:NSDictionary) {
-        dict.objectForKey(bookTitle!)
-    }
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        jsonData()
         title = bookTitle
         print(productDict)
   

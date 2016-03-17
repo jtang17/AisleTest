@@ -79,7 +79,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
-        tableView = UITableView(frame: CGRectMake(0,0,view.frame.size.width,view.frame.size.height), style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0,64,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         
         if let theTableView = tableView {

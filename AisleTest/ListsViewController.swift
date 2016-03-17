@@ -66,7 +66,7 @@ class ListsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //print(productsArray[2].count)
         // Do any additional setup after loading the view.
         
-        tableView = UITableView(frame: CGRectMake(0,0,view.frame.size.width,view.frame.size.height), style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0,64,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         
         if let theTableView = tableView {

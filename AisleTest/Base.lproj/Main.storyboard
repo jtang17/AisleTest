@@ -53,17 +53,17 @@
                     <connections>
                         <outlet property="txtPassword" destination="Si9-XM-uk5" id="OcH-8y-asT"/>
                         <outlet property="txtUserName" destination="J3N-jE-6Ud" id="Mu9-EO-7NI"/>
-                        <segue destination="v17-Jf-blc" kind="show" identifier="Login" id="lRE-qU-eyg"/>
+                        <segue destination="ixl-yr-xAr" kind="show" identifier="Login" id="lRE-qU-eyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="180" y="-15"/>
         </scene>
-        <!--Hacks View Controller-->
+        <!--Products View Controller-->
         <scene sceneID="bNu-F4-HBn">
             <objects>
-                <viewController id="403-Tf-Tka" customClass="HacksViewController" customModule="AisleTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="403-Tf-Tka" customClass="ProductsViewController" customModule="AisleTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4wY-3O-GiS"/>
                         <viewControllerLayoutGuide type="bottom" id="dVd-qD-Pe4"/>
@@ -101,10 +101,13 @@
                         <barButtonItem title="Item" id="qQT-HU-j2G"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="uUc-Yg-RbW" kind="show" identifier="3to4" id="E1B-Ar-oRS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47c-cb-lc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="216" y="716"/>
+            <point key="canvasLocation" x="252" y="658"/>
         </scene>
         <!--Lists View Controller-->
         <scene sceneID="GST-IE-JOm">
@@ -152,15 +155,19 @@
                             <constraint firstItem="7FF-jP-skp" firstAttribute="leading" secondItem="V8l-cO-nL8" secondAttribute="leading" id="nNI-Jz-5ws"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="czx-HJ-tw8"/>
+                    <connections>
+                        <segue destination="403-Tf-Tka" kind="show" identifier="2to3" id="Ouf-ps-6Bw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMF-K2-Kia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867" y="31"/>
+            <point key="canvasLocation" x="1735" y="-15"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="Zj8-sT-6sY">
             <objects>
-                <viewController id="uUc-Yg-RbW" sceneMemberID="viewController">
+                <viewController id="uUc-Yg-RbW" customClass="DetailsViewController" customModule="AisleTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ojW-Qt-Gzz"/>
                         <viewControllerLayoutGuide type="bottom" id="qRp-H8-2d4"/>
@@ -174,7 +181,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q8V-mH-SUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="686"/>
+            <point key="canvasLocation" x="900" y="684"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pqU-6h-gqF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ixl-yr-xAr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="45r-oQ-yFR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="v17-Jf-blc" kind="relationship" relationship="rootViewController" id="fyb-gH-mG1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h6d-aE-QJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923" y="-15"/>
         </scene>
     </scenes>
 </document>

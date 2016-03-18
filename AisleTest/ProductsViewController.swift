@@ -88,7 +88,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             let id = ids["id"] as! Int
             idArray.append(id)
         }
-        //print(idArray) [87419, 123889, 93666, 85923, 117126, 93564, 90616, 104489] for Innovative Thinking List
+        print(idArray) //[87419, 123889, 93666, 85923, 117126, 93564, 90616, 104489] for Innovative Thinking List
         tableView = UITableView(frame: CGRectMake(0,64,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         

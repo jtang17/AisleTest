@@ -15,7 +15,8 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     var bookTitle: String?
     var id: Int?
     var imageViewObject = UIImageView()
-    var descriptionArray = Array<AnyObject>()
+    var idArray = Array<AnyObject>()
+    var descriptionArray = [String]()
     var productDict: NSDictionary?
     var textLabel = UILabel()
     
@@ -83,12 +84,17 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
             let data = json["data"] as! [[String : AnyObject]]
             for id in data {
                 let idNumber = id["id"] as! Int
-                self.descriptionArray.append(String(idNumber))
+                self.idArray.append(String(idNumber))
+                /*for descriptions in parent {
+                    let description = descriptions["description"] as! String
+                    self.descriptionArray.append(description)
+
+                }*/
 
             }
-            print(self.descriptionArray)
+            //print(self.descriptionArray)
             
-            self.textLabel.text = "IDs: \(dump(self.descriptionArray))"
+            self.textLabel.text = "IDs: \(dump(self.idArray))"  //1,2,3,4,5,6,7,8,9,10
             return
         })
     }

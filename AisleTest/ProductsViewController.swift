@@ -16,6 +16,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     var listTitle: String?
     var booksArray = [String]()
     var authorsArray = Array<AnyObject>()
+    var idArray = Array<Int>()
     var imageUrlArray = [String]()
     var chosenCellIndex: Int?
     
@@ -83,7 +84,11 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
                 imageUrlArray.append("none")
             }
         }
-        
+        for ids in products! {
+            let id = ids["id"] as! Int
+            idArray.append(id)
+        }
+        //print(idArray) [87419, 123889, 93666, 85923, 117126, 93564, 90616, 104489] for Innovative Thinking List
         tableView = UITableView(frame: CGRectMake(0,64,view.frame.size.width,view.frame.size.height), style: .Plain)
         
         
@@ -110,6 +115,7 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
             let detailsViewController:DetailsViewController = segue.destinationViewController as! DetailsViewController
             detailsViewController.imageUrl = imageUrlArray[chosenCellIndex!] as String
             detailsViewController.bookTitle = booksArray[chosenCellIndex!] as String
+            detailsViewController.id = idArray[chosenCellIndex!] as Int
             
         }
     }

@@ -13,7 +13,9 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     
     var imageUrl: String?
     var bookTitle: String?
+    var id: Int?
     var imageViewObject = UIImageView()
+    var descriptionArray = Array<AnyObject>()
     var productDict: NSDictionary?
     var textLabel = UILabel()
     
@@ -57,7 +59,7 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 //print(json)
-                //self.update_text(json)
+                self.update_text(json)
 
                 
             } catch {
@@ -75,7 +77,18 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
     
     func update_text(json:NSDictionary) {
         dispatch_async(dispatch_get_main_queue(), {
-            //self.textLabel.text = "Description from JSON"
+            
+            //update UI/textlabel here
+            
+            let data = json["data"] as! [[String : AnyObject]]
+            for id in data {
+                let idNumber = id["id"] as! Int
+                self.descriptionArray.append(String(idNumber))
+
+            }
+            print(self.descriptionArray)
+            
+            self.textLabel.text = "IDs: \(dump(self.descriptionArray))"
             return
         })
     }
@@ -85,13 +98,12 @@ class DetailsViewController: UIViewController, NSURLSessionDelegate {
         title = bookTitle
         
         jsonData()
-        print(productDict)
+        //print(productDict)
         
         textLabel = UILabel(frame: CGRectMake(0 , 285, 250, 250))
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         textLabel.font = UIFont(name: "Arial", size: 14)
-        textLabel.text = "hi there can you see this text \n hello hello \n description \n json"
         self.view.addSubview(textLabel)
         
         imageViewObject = UIImageView(frame:CGRectMake(0, 75, 200, 250))
